@@ -19,8 +19,12 @@ auth_params = {'key': credentials['GoogleKey'],
                'cx': credentials['GoogleID']}
 
 def search_images(q):
-    url = search_url + '?' + urlencode(dict(auth_params.items() +
-                                            {'searchType': 'image',
-                                             'q': q}.items()))
+    all_params = dict(auth_params.items() +
+                      {'searchType': 'image',
+                       'imgSize': 'xxlarge',
+                       'imgType': 'photo',
+                       'imgColorType': 'color',
+                       'q': q}.items())
+    url = search_url + '?' + urlencode(all_params)
     response = urllib2.urlopen(url).read()
     return [item['link'] for item in json.loads(response)['items']]
