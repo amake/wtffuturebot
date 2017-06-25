@@ -24,11 +24,10 @@ def _random_future():
 def _random_image():
     q = '%s future' % random.choice(adjectives)
     images = search.search_images(q)
-    return q, random.choice(images)
+    return random.choice(images), q
 
 def random_future():
-    _, img = _random_image()
-    return _random_future(), img
+    return (_random_future(),) + _random_image()
 
 if __name__ == '__main__':
     for _ in xrange(10):
