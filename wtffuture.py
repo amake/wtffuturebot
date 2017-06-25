@@ -18,13 +18,20 @@ def load_words(filename):
 adjectives = load_words('adjectives.txt')
 people = load_words('people.txt')
 
+allowed_image_formats = ['gif', 'jpeg', 'jpg', 'png']
+
 def _random_future():
     return 'This is the future that %s want' % random.choice(people)
 
 def _random_image():
-    q = '%s future' % random.choice(adjectives)
-    images = search.search_images(q)
-    return random.choice(images), q
+    for _ in xrange(10):
+        q = '%s future' % random.choice(adjectives)
+        images = [img for img in search.search_images(q)
+                  if any(img.endswith(ext) for ext in allowed_image_formats)]
+        if not images:
+            continue
+        return random.choice(images), q
+    raise Exception('Failed to find an image')
 
 def random_future():
     return (_random_future(),) + _random_image()
