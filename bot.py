@@ -26,10 +26,12 @@ auth.set_access_token(credentials['AccessToken'],
 api = tweepy.API(auth)
 
 def do_tweet(event, context):
-    text, img, img_flavor = wtffuture.random_future()
-    f = StringIO(urllib2.urlopen(img).read())
-    api.update_with_media(img, status=text, file=f)
-    return text, img, img_flavor
+    for _ in xrange(5):
+        text, img, img_flavor = wtffuture.random_future()
+        f = StringIO(urllib2.urlopen(img).read())
+        api.update_with_media(img, status=text, file=f)
+        return text, img, img_flavor
+    raise Exception('Failed to tweet')
 
 if __name__ == '__main__':
     print(do_tweet(None, None))
