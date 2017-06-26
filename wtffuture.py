@@ -20,22 +20,22 @@ people = load_words('people.txt')
 
 allowed_image_formats = ['gif', 'jpeg', 'jpg', 'png']
 
-def _random_future():
+def _random_future_text():
     return 'This is the future that %s want' % random.choice(people)
 
-def _random_image():
+def _random_image_urls():
     for _ in xrange(10):
         q = '%s future' % random.choice(adjectives)
         images = [img for img in search.search_images(q)
                   if any(img.endswith(ext) for ext in allowed_image_formats)]
-        if not images:
-            continue
-        return random.choice(images), q
-    raise Exception('Failed to find an image')
+        if images:
+            random.shuffle(images)
+            return images, q
+    raise Exception('Failed to find images')
 
 def random_future():
-    return (_random_future(),) + _random_image()
+    return (_random_future_text(),) + _random_image_urls()
 
 if __name__ == '__main__':
     for _ in xrange(10):
-        print(_random_future())
+        print(_random_future_text())
