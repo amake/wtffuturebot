@@ -13,4 +13,4 @@ MIT
 
 # Acknowledgments
 
-This project uses a noun list derived from [WordNet](http://wordnet.princeton.edu).
+This project uses word lists derived from [WordNet](http://wordnet.princeton.edu).
