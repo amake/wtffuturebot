@@ -2,11 +2,16 @@ from __future__ import print_function
 import os
 import sys
 import json
-import urllib2
 import logging
-from StringIO import StringIO
 import tweepy
 import wtffuture
+from io import BytesIO
+
+
+try:
+    from urllib.request import urlopen
+except ImportError:
+    from urllib2 import urlopen
 
 with open('credentials.json') as infile:
     credentials = json.load(infile)
@@ -22,10 +27,10 @@ def do_tweet(event, context):
     text, img_urls, img_flavor = wtffuture.random_future()
     for img_url in img_urls:
         try:
-            f = StringIO(urllib2.urlopen(img_url).read())
+            f = BytesIO(urlopen(img_url).read())
             api.update_with_media(img_url, status=text, file=f)
             return text, img_url, img_flavor
-        except Exception, e:
+        except Exception as e:
             logging.exception(e)
     raise Exception('Failed to tweet')
 

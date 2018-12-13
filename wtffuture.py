@@ -24,7 +24,7 @@ def _random_future_text():
     return 'This is the future that %s want' % random.choice(people)
 
 def _random_image_urls():
-    for _ in xrange(10):
+    for _ in range(10):
         q = '%s future' % random.choice(adjectives)
         images = [img for img in search.search_images(q)
                   if any(img.endswith(ext) for ext in allowed_image_formats)]
@@ -37,5 +37,5 @@ def random_future():
     return (_random_future_text(),) + _random_image_urls()
 
 if __name__ == '__main__':
-    for _ in xrange(10):
+    for _ in range(10):
         print(_random_future_text())
