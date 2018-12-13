@@ -8,16 +8,8 @@ from StringIO import StringIO
 import tweepy
 import wtffuture
 
-creds_file = 'credentials.json'
-
-credentials = {}
-
-if os.path.isfile(creds_file):
-    with open(creds_file) as infile:
-        credentials = json.load(infile)
-else:
-    print('Credentials not found. Run auth_setup.py first.')
-    sys.exit(1)
+with open('credentials.json') as infile:
+    credentials = json.load(infile)
 
 auth = tweepy.OAuthHandler(credentials['ConsumerKey'],
                            credentials['ConsumerSecret'])

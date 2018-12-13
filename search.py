@@ -4,15 +4,9 @@ import json
 import urllib2
 from urllib import urlencode
 
-creds_file = 'google_credentials.json'
-credentials = {}
 
-if os.path.isfile(creds_file):
-    with open(creds_file) as infile:
-        credentials = json.load(infile)
-else:
-    print('Google credentials not found.')
-    sys.exit(1)
+with open('google_credentials.json') as infile:
+    credentials = json.load(infile)
 
 search_url = 'https://www.googleapis.com/customsearch/v1'
 auth_params = {'key': credentials['GoogleKey'],
