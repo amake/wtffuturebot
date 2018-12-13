@@ -31,3 +31,11 @@ def search_images(q):
     url = search_url + '?' + urlencode(params)
     response = urlopen(url).read()
     return [item['link'] for item in json.loads(response)['items']]
+
+
+def main():
+    print(search_images('potato'))
+
+
+if __name__ == '__main__':
+    main()
