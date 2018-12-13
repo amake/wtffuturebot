@@ -23,5 +23,8 @@ setup(
     ],
     keywords='future portents',
     py_modules=['wtffuture', 'search', 'bot', 'getadjectives', 'getpeople'],
-    install_requires=['tweepy', 'nltk', 'pattern']
+    install_requires=['tweepy'],
+    extras_require={
+        'dev': ['nltk', 'pattern'],
+    }
 )
