@@ -23,6 +23,7 @@ auth.set_access_token(credentials['AccessToken'],
 
 api = tweepy.API(auth)
 
+
 def do_tweet(event, context):
     text, img_urls, img_flavor = wtffuture.random_future()
     for img_url in img_urls:
@@ -33,6 +34,7 @@ def do_tweet(event, context):
         except Exception as e:
             logging.exception(e)
     raise Exception('Failed to tweet')
+
 
 if __name__ == '__main__':
     print(do_tweet(None, None))

@@ -20,6 +20,7 @@ search_url = 'https://www.googleapis.com/customsearch/v1'
 auth_params = {'key': credentials['GoogleKey'],
                'cx': credentials['GoogleID']}
 
+
 def search_images(q):
     params = {'searchType': 'image',
               'imgSize': 'xxlarge',
